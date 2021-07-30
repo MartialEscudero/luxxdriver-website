@@ -1,20 +1,41 @@
 <template>
   <v-app style="background-color: #202020; color: #D7AC22">
-    <h1 class="container mx-auto lg:text-left sm:text-center text-4xl font-bold mt-32">
+    <h1 class="container mx-auto text-4xl font-bold xl:mt-20 sm:mt-10 text-left xl:mb-10">
       Réservation
     </h1>
-    <div class="mx-auto container grid xl:grid-cols-3 sm:grid-cols-1 gap-10 mt-10">
-      <div>
-        <input placeholder="Nom" v-model="name" class="input xl:text-2xl sm:text-lg" type="text" name="user_name">
+    <div v-if="editReservation == true" class="mx-auto container grid xl:grid-cols-3 sm:grid-cols-1 gap-10 xl:mt-20">
+      <div class="xl:-mt-14">
+        <v-text-field
+            v-model="name"
+            label="Nom"
+            clearable
+            dark
+            style="font-size: 1.2rem"
+            name="user_name"
+          ></v-text-field>
       </div>
-      <div>
-        <input placeholder="Numéro" v-model="tel" class="input xl:text-2xl sm:text-lg" type="tel" name="user_tel">
+      <div class="sm:-mt-14">
+        <v-text-field
+            v-model="tel"
+            label="Numéro"
+            clearable
+            dark
+            style="font-size: 1.2rem"
+            name="user_tel"
+          ></v-text-field>
       </div>
-      <div>
-        <input placeholder="E-mail" v-model="email" class="input xl:text-2xl sm:text-lg" type="text" name="user_email">
+      <div class="sm:-mt-14">
+        <v-text-field
+            v-model="email"
+            label="E-mail"
+            clearable
+            dark
+            style="font-size: 1.2rem"
+            name="user_email"
+          ></v-text-field>
       </div>
-      <div class="mx-auto">
-        <p class="text-center text-white">Nombre de passagers</p><br>
+      <div class="mx-auto xl:mt-28 sm:-mt-7">
+        <p class="text-center text-white text-sm">Nombre de passagers</p><br>
         <div class="grid grid-cols-3">
           <div class="mr-10">
             <v-btn fab v-if="passager > passagerMin" @click="passager--" dark class="btn" outlined icon>
@@ -35,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-15">
+      <div class="xl:mt-40">
         <v-row class="mx-auto">
           <v-menu
             ref="menu"
@@ -48,6 +69,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
+                style="font-size: 1.2rem"
                 dark
                 color="#D7AC22"
                 v-model="date"
@@ -84,7 +106,7 @@
           </v-menu>
         </v-row>
       </div>
-      <div class="mt-15">
+      <div class="xl:mt-40 sm:-mt-4">
         <v-row class="mx-auto">
           <v-menu
             ref="menu"
@@ -99,6 +121,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
+                style="font-size: 1.2rem"
                 dark
                 color="#D7AC22"
                 v-model="time"
@@ -120,14 +143,26 @@
           <v-spacer></v-spacer>
         </v-row>
       </div>
-      <div>
-        <input placeholder="Lieu de départ" v-model="start" class="input xl:text-2xl sm:text-lg" type="text" name="user_start">
+      <div class="xl:mt-28 sm:-mt-7">
+        <v-text-field
+            v-model="start"
+            label="Lieu de départ"
+            clearable
+            dark
+            style="font-size: 1rem"
+            name="user_start"
+          ></v-text-field>
       </div>
-      <div>
-        <input placeholder="Lieu d'arrivé" v-model="end" class="input xl:text-2xl sm:text-lg" type="text" name="user_end">
+      <div class="xl:mt-28 sm:-mt-10">
+        <v-select
+          dark
+          style="font-size: 1.2rem"
+          :items="end"
+          label="Lieu d’arrivé"
+        ></v-select>
       </div>
-      <div class="mx-auto">
-        <button class="valider text-xl text-white font-bold py-2 px-4">
+      <div class="mx-auto xl:mt-28 sm:-mt-10">
+        <button @click="sendReservation()" class="valider text-xl text-white font-bold py-2 px-4">
           Valider
         </button>
       </div>
@@ -138,8 +173,10 @@
 <script>
 export default {
   data: () => ({
-    name: null,
-    tel: null,
+    editReservation: true,
+    resultReservation: false,
+    name: "",
+    tel: "",
     email: null,
     passager: 1,
     passagerMax: 4,
@@ -150,10 +187,40 @@ export default {
     menu2: false,
     hour: null,
     start: null,
-    end: null,
+    end: [
+      'Carnon-Plage / Palavas',
+      'Aéroport',
+      'Gare St-Roch',
+      'Montpellier Centre',
+      'Gare Sud de France',
+      'La Grande-Motte',
+      'Le Grau-du-Roi',
+      'Vias',
+      'AUTRE'
+    ],
     selected: null
   }),
   methods: {
+    sendReservation() {
+      const nameRegex = /^[a-z ,.'-]+$/i
+      const telRegex = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      if (isNaN(this.name) && this.name.length >= 3 && nameRegex.test(this.name)) {
+        if(this.tel.length <= 10 && telRegex.test(this.tel)) {
+          if (emailRegex.test(this.email)) {
+            if (this.start != null && this.start.length >= 3) {
+              this.editReservation = false
+              this.resultReservation = true
+            } else {
+              console.log("erreur départ")}
+          } else {
+            console.log("erreur email")}
+        } else {
+          console.log("erreur tel")}
+      } else {
+        console.log("erreur nom")}
+    }
   },
   mounted() {
   }
@@ -161,13 +228,6 @@ export default {
 </script>
 
 <style scoped>
-input {
-  width: 100%;
-  outline: none;
-  color: white;
-  border-bottom: 1px solid white;
-}
-
 .btn {
   background-color: rgba(215, 172, 34, .3);
   color: white
