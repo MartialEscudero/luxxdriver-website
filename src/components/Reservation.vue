@@ -161,13 +161,49 @@
         <v-select
           dark
           style="font-size: 1.2rem"
-          :items="end"
+          v-model="end"
+          :items="endItems"
           label="Lieu d’arrivé"
         ></v-select>
+        <p v-if="showEnd == true" class="absolute text-red-500 text-xs -mt-5">Lieu d'arrivé invalide</p>
       </div>
       <div class="mx-auto xl:mt-28 sm:-mt-10">
-        <button @click="sendReservation()" class="valider text-xl text-white font-bold py-2 px-4">
+        <button @click="testReservation()" class="valider text-xl text-white font-bold py-2 px-4">
           Valider
+        </button>
+      </div>
+    </div>
+    <div v-if="resultReservation == true" class="mx-auto container grid xl:grid-cols-3 sm:grid-cols-1 gap-10 xl:mt-20">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+        {{name}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+        {{tel}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+        {{email}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+        {{passager}} passager(s)
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+        le {{date}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+        à {{time}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+        de : {{start}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+        vers : {{end}}
+      </div>
+      <div class="mx-auto xl:mt-32">
+        <button @click="cancelReservation()" class="valider text-xl text-white font-bold py-2 px-4 mr-5">
+          Annuler
+        </button>
+        <button @click="sendReservation()" class="valider text-xl text-white font-bold py-2 px-4 ml-5">
+          Envoyer
         </button>
       </div>
     </div>
@@ -191,7 +227,8 @@ export default {
     menu2: false,
     hour: null,
     start: null,
-    end: [
+    end: null,
+    endItems: [
       'Carnon-Plage / Palavas',
       'Aéroport',
       'Gare St-Roch',
@@ -207,43 +244,45 @@ export default {
     showTel: false,
     showEmail: false,
     showStart: false,
+    showEnd: false,
     
   }),
   methods: {
-    sendReservation() {
+    testReservation() {
       const nameRegex = /^[a-z ,.'-]+$/i
       const telRegex = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
       const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (isNaN(this.name) && this.name.length >= 3 && nameRegex.test(this.name)) {
-        this.setError()
+        this.showName = false
       } else {
         this.showName = true
       }
-      if (this.tel.length <= 10 && telRegex.test(this.tel)) {
-        this.setError()
+      if (this.tel != null && this.tel.length <= 10 && telRegex.test(this.tel)) {
+        this.showTel = false
       } else {
         this.showTel = true
       }
       if (emailRegex.test(this.email)) {
-        this.setError()
+        this.showEmail = false
       } else {
         this.showEmail = true
       }
       if (this.start != null && this.start.length >= 3) {
-        this.setError()
-        this.editReservation = false
-        this.resultReservation = true
+        this.showStart = false
       } else {
         this.showStart = true
       }
+      if (this.end != null) {
+        this.showEnd = false
+      } else {
+        this.showEnd = true
+      }
+      if (this.showName == false && this.showTel == false && this.showEmail == false && this.showStart == false && this.showEnd == false) {
+        this.editReservation = false
+        this.resultReservation = true
+      }
     },
-    setError() {
-      this.showName = false
-      this.showTel = false
-      this.showEmail = false
-      this.showStart = false
-    }
   },
   mounted() {
   }
