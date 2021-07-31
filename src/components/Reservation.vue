@@ -13,6 +13,7 @@
             style="font-size: 1.2rem"
             name="user_name"
           ></v-text-field>
+          <p v-if="showName == true" class="absolute text-red-500 text-xs -mt-5">Nom invalide</p>
       </div>
       <div class="sm:-mt-14">
         <v-text-field
@@ -23,6 +24,7 @@
             style="font-size: 1.2rem"
             name="user_tel"
           ></v-text-field>
+          <p v-if="showTel == true" class="absolute text-red-500 text-xs -mt-5">Numéro téléphone invalide</p>
       </div>
       <div class="sm:-mt-14">
         <v-text-field
@@ -33,6 +35,7 @@
             style="font-size: 1.2rem"
             name="user_email"
           ></v-text-field>
+          <p v-if="showEmail == true" class="absolute text-red-500 text-xs -mt-5">E-mail invalide</p>
       </div>
       <div class="mx-auto xl:mt-28 sm:-mt-7">
         <p class="text-center text-white text-sm">Nombre de passagers</p><br>
@@ -152,6 +155,7 @@
             style="font-size: 1rem"
             name="user_start"
           ></v-text-field>
+          <p v-if="showStart == true" class="absolute text-red-500 text-xs -mt-5">Lieu de départ invalide</p>
       </div>
       <div class="xl:mt-28 sm:-mt-10">
         <v-select
@@ -198,7 +202,12 @@ export default {
       'Vias',
       'AUTRE'
     ],
-    selected: null
+    selected: null,
+    showName: false,
+    showTel: false,
+    showEmail: false,
+    showStart: false,
+    
   }),
   methods: {
     sendReservation() {
@@ -207,19 +216,33 @@ export default {
       const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (isNaN(this.name) && this.name.length >= 3 && nameRegex.test(this.name)) {
-        if(this.tel.length <= 10 && telRegex.test(this.tel)) {
-          if (emailRegex.test(this.email)) {
-            if (this.start != null && this.start.length >= 3) {
-              this.editReservation = false
-              this.resultReservation = true
-            } else {
-              console.log("erreur départ")}
-          } else {
-            console.log("erreur email")}
-        } else {
-          console.log("erreur tel")}
+        this.setError()
       } else {
-        console.log("erreur nom")}
+        this.showName = true
+      }
+      if (this.tel.length <= 10 && telRegex.test(this.tel)) {
+        this.setError()
+      } else {
+        this.showTel = true
+      }
+      if (emailRegex.test(this.email)) {
+        this.setError()
+      } else {
+        this.showEmail = true
+      }
+      if (this.start != null && this.start.length >= 3) {
+        this.setError()
+        this.editReservation = false
+        this.resultReservation = true
+      } else {
+        this.showStart = true
+      }
+    },
+    setError() {
+      this.showName = false
+      this.showTel = false
+      this.showEmail = false
+      this.showStart = false
     }
   },
   mounted() {
