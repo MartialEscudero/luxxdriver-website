@@ -1,10 +1,10 @@
 <template>
   <v-app style="background-color: #202020; color: #D7AC22">
-    <h1 class="container mx-auto text-4xl font-bold xl:mt-20 sm:mt-10 text-left xl:mb-10">
+    <h1 class="container mx-auto text-4xl font-bold md:mt-20 sm:mt-10 text-left md:mb-10">
       Réservation
     </h1>
-    <div v-if="editReservation == true" class="mx-auto container grid xl:grid-cols-3 sm:grid-cols-1 gap-10 xl:mt-20">
-      <div class="xl:-mt-14">
+    <div v-if="editReservation == true" class="mx-auto container grid md:grid-cols-3 sm:grid-cols-1 gap-10 md:mt-20">
+      <div class="md:-mt-14">
         <v-text-field
             v-model="name"
             label="Nom"
@@ -37,7 +37,7 @@
           ></v-text-field>
           <p v-if="showEmail == true" class="absolute text-red-500 text-xs -mt-5">E-mail invalide</p>
       </div>
-      <div class="mx-auto xl:mt-28 sm:-mt-7">
+      <div class="mx-auto md:mt-28 sm:-mt-7">
         <p class="text-center text-white text-sm">Nombre de passagers</p><br>
         <div class="grid grid-cols-3">
           <div class="mr-10">
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="xl:mt-40">
+      <div class="md:mt-40">
         <v-row class="mx-auto">
           <v-menu
             ref="menu"
@@ -109,7 +109,7 @@
           </v-menu>
         </v-row>
       </div>
-      <div class="xl:mt-40 sm:-mt-4">
+      <div class="md:mt-40 sm:-mt-4">
         <v-row class="mx-auto">
           <v-menu
             ref="menu"
@@ -146,7 +146,7 @@
           <v-spacer></v-spacer>
         </v-row>
       </div>
-      <div class="xl:mt-28 sm:-mt-7">
+      <div class="md:mt-28 sm:-mt-7">
         <v-text-field
             v-model="start"
             label="Lieu de départ"
@@ -157,7 +157,7 @@
           ></v-text-field>
           <p v-if="showStart == true" class="absolute text-red-500 text-xs -mt-5">Lieu de départ invalide</p>
       </div>
-      <div class="xl:mt-28 sm:-mt-10">
+      <div class="md:mt-28 sm:-mt-10">
         <v-select
           dark
           style="font-size: 1.2rem"
@@ -167,40 +167,40 @@
         ></v-select>
         <p v-if="showEnd == true" class="absolute text-red-500 text-xs -mt-5">Lieu d'arrivé invalide</p>
       </div>
-      <div class="mx-auto xl:mt-28 sm:-mt-10">
+      <div class="mx-auto md:mt-28 sm:-mt-5 sm:mb-10">
         <button @click="testReservation()" class="valider text-xl text-white font-bold py-2 px-4">
           Valider
         </button>
       </div>
     </div>
-    <div v-if="resultReservation == true" class="mx-auto container grid xl:grid-cols-3 sm:grid-cols-1 gap-10 xl:mt-20">
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+    <div v-if="resultReservation == true" class="mx-auto container grid md:grid-cols-3 sm:grid-cols-1 gap-10 md:mt-20">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:-mt-8">
         {{name}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:-mt-8">
         {{tel}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:-mt-8">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:-mt-8">
         {{email}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         {{passager}} passager(s)
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         le {{date}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         à {{time}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         de : {{start}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 xl:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         vers : {{end}}
       </div>
-      <div class="mx-auto xl:mt-32">
+      <div class="mx-auto md:mt-32">
         <button @click="cancelReservation()" class="valider text-xl text-white font-bold py-2 px-4 mr-5">
-          Annuler
+          Modifier
         </button>
         <button @click="sendReservation()" class="valider text-xl text-white font-bold py-2 px-4 ml-5">
           Envoyer
