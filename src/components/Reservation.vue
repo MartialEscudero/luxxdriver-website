@@ -211,8 +211,11 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
   data: () => ({
+    templateParams: null,
     editReservation: true,
     resultReservation: false,
     name: "",
@@ -225,7 +228,6 @@ export default {
     menu: false,
     time: new Date().getHours() + ":" + new Date().getMinutes(),
     menu2: false,
-    hour: null,
     start: null,
     end: null,
     endItems: [
@@ -248,6 +250,28 @@ export default {
     
   }),
   methods: {
+    sendReservation() {
+      this.templateParams = {
+        name: this.name,
+        tel: this.tel,
+        email: this.email,
+        passager: this.passager,
+        date: this.date,
+        time: this.time,
+        start: this.start,
+        end: this.end
+      }
+      emailjs.send('service_95xprd8', 'template_fin6nem', this.templateParams)
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+        console.log('FAILED...', error);
+      });
+    },
+    cancelReservation() {
+      this.editReservation = true
+      this.resultReservation = false
+    },
     testReservation() {
       const nameRegex = /^[a-z ,.'-]+$/i
       const telRegex = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
