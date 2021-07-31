@@ -11,7 +11,7 @@
       </div> -->
       <div class="md:mt-2 md:text-right sm:text-center">
         <p class="text-xs">Rejoins moi sur <a class="font-bold" target="_blank" href="https://www.instagram.com/luxx_driver/">Instagram </a>.</p>
-        <p class="text-xs">Réserve ton prochain trajet rapidement en <a class="font-bold" target="_blank">cliquant ici</a>.</p>
+        <p class="text-xs">Réserve ton prochain trajet rapidement en <a class="font-bold" target="_blank" v-scroll-to="'#reservation'">cliquant ici</a>.</p>
       </div>
       <div></div>
       <div class="md:mt-2 sm:mt-5 md:text-left sm:text-center">
