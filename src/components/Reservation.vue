@@ -62,8 +62,8 @@
       <div class="md:mt-40">
         <v-row class="mx-auto">
           <v-menu
-            ref="menu"
-            v-model="menu"
+            ref="menuOne"
+            v-model="menuOne"
             :close-on-content-click="false"
             :return-value.sync="date"
             transition="scale-transition"
@@ -94,14 +94,14 @@
               <v-btn
                 text
                 color="#8f7213"
-                @click="menu = false"
+                @click="menuOne = false"
               >
                 Annuler
               </v-btn>
               <v-btn
                 text
                 color="#8f7213"
-                @click="$refs.menu.save(date)"
+                @click="$refs.menuOne.save(date)"
               >
                 Valider
               </v-btn>
@@ -112,8 +112,8 @@
       <div class="md:mt-40 sm:-mt-4">
         <v-row class="mx-auto">
           <v-menu
-            ref="menu"
-            v-model="menu2"
+            ref="menuTwo"
+            v-model="menuTwo"
             :close-on-content-click="false"
             :nudge-right="40"
             :return-value.sync="time"
@@ -135,12 +135,12 @@
               ></v-text-field>
             </template>
             <v-time-picker
-              v-if="menu2"
+              v-if="menuTwo"
               v-model="time"
               format="24hr"
               full-width
               color="#8f7213"
-              @click:minute="$refs.menu.save(time)"
+              @click:minute="$refs.menuTwo.save(time)"
             ></v-time-picker>
           </v-menu>
           <v-spacer></v-spacer>
@@ -225,9 +225,9 @@ export default {
     passagerMax: 4,
     passagerMin: 1,
     date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-    menu: false,
+    menuOne: false,
     time: new Date().getHours() + ":" + new Date().getMinutes(),
-    menu2: false,
+    menuTwo: false,
     start: null,
     end: null,
     endItems: [
