@@ -1,7 +1,7 @@
 <template>
 <v-main id="home">
   <nav role="navigation" class="mb-32 absolute">
-    <div class="bg"></div>
+    <div id="bg" class="bgNoScroll"></div>
     <div id="menuToggle">
       <input type="checkbox" />
       <span></span>
@@ -16,6 +16,10 @@
     </div>
     <a class="number select-none text-white xl:text-4xl sm:text-2xl" href="tel:+33500000000">06 06 06 06 06</a>
   </nav>
+  <button v-scroll-to="'#reservation'" class="btnReserv bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded inline-flex items-center xl:text-base sm:text-xs">
+    <svg class="float-right fill-current xl:mt-1 sm:mt-0.5  xl:h-5 sm:h-4 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/></svg>
+    <span>Réserver</span>
+  </button>
   <router-view/>
   <footer style="background-color: #383838; color: white" class="flex">
     <div class="container grid md:grid-cols-3 sm:grid-cols-1">
@@ -40,6 +44,7 @@
 </template>
 
 <script>
+require("./assets/js/app.js")
 
 export default {
   name: 'App',
@@ -72,21 +77,38 @@ a:hover {
   background: #8f7213;
 }
 
-.bg {
+.btnReserv {
   display: block;
   position: fixed;
   z-index: 1;
-  background: black;
-  opacity: 0.2;
+  bottom: 15px;
+  right: 15px;
+}
+
+#bg {
+  display: block;
+  position: fixed;
+  z-index: 1;
   width: 1000%;
-  height: 80px;
+  height: 63px;
+}
+
+.bgNoScroll {
+  background: black;
+  transition: 0.2s;
+  opacity: 0.2;
+}
+
+.bgScroll {
+  transition: 0.2s;
+  background: rgb(66, 66, 66);
 }
 
 .number {
   display: block;
   position: fixed;
   z-index: 1;
-  top: 25px;
+  top: 13px;
   right: 35px;
   font-family: 'Roboto', sans-serif;
   font-weight: 700
@@ -101,7 +123,7 @@ a:hover {
 #menuToggle {
   display: block;
   position: fixed;
-  top: 32px;
+  top: 21px;
   left: 35px;
   z-index: 1;
   -webkit-user-select: none;
@@ -118,7 +140,6 @@ a:hover {
 #menuToggle a:hover {
   color: #D7AC22;
 }
-
 
 #menuToggle input {
   display: block;
@@ -205,17 +226,17 @@ a:hover {
 
 @media screen and (max-width: 640px) {
   .number {
-    top: 21px;
+    top: 11px;
     right: 25px;
   }
 
   #menuToggle {
-    top: 25px;
+    top: 15px;
     left: 25px;
   }
 
-  .bg {
-    height: 68px;
+  #bg {
+    height: 52px;
   }
 }
 </style>
