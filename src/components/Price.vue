@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-color: #383838; color: #D7AC22">
+  <v-app style="background-color: #383838; color: #D7AC22" id="price">
     <h1 class="container mx-auto text-4xl font-bold xl:pt-20 sm:pt-10 mb-10 text-left">
       Tarifs
     </h1>
