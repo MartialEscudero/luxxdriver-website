@@ -10,10 +10,19 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  { 
+    path: '/404', 
+    name: '404',
+    component: () => import('../views/404.vue')
+  },
+  { 
+    path: '*', 
+    component: () => import('../views/404.vue')
+  }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

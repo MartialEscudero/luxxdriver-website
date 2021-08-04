@@ -9,7 +9,7 @@
         </p>
         <img class="mx-auto w-8 mt-5" src="../assets/img/gui-right.svg">
       </div>
-      <div class="container mb-32" v-if="$vuetify.breakpoint.smAndDown">
+      <div class="container mb-32 mt-14" v-if="$vuetify.breakpoint.smAndDown">
         <img class="w-5 ml-5 mb-5" src="../assets/img/gui-left.svg">
         <p class="ml-7 mr-7 text-white text-sm italic text-center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -143,7 +143,6 @@
               @click:minute="$refs.menuTwo.save(time)"
             ></v-time-picker>
           </v-menu>
-          <v-spacer></v-spacer>
         </v-row>
       </div>
       <div class="md:mt-28 sm:-mt-7">
