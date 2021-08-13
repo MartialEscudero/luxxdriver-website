@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: #202020;" class="flex" id="quote">
     <div class="m-auto">
-      <h1 style="color: #D7AC22" class="md:mt-28 md:mb-20 sm:mt-24 text-center text-5xl">Luxx Driver</h1>
+      <h1 style="color: #D7AC22" class="md:mt-28 md:mb-20 sm:mt-24 text-center text-5xl" translate="no">Luxx Driver</h1>
       <div class="container grid grid-cols-3 mb-32" v-if="$vuetify.breakpoint.mdAndUp">
         <img class="mx-auto w-8 mt-5" src="../assets/img/gui-left.svg">
         <p class="-ml-20 -mr-20 text-white italic text-center">
@@ -27,5 +27,3 @@ h1 {
   font-family: 'Spectral', serif;
 }
 </style>
-v-if="$vuetify.breakpoint.mdAndUp"
-v-if="$vuetify.breakpoint.smAndDown"
