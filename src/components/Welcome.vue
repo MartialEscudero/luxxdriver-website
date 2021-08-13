@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative flex h-screen w-full h-full bg-no-repeat bg-cover xl:bg-right sm:bg-center"
-    style="background-image: url('https://res.cloudinary.com/do5ghqhjj/image/upload/v1627576273/bg_b512cb37bd.jpg')"
+    style="background-image: url('https://www.luxxdriver.com/assets/img/bg.jpg')"
   >
     <div class="absolute xl:bottom-24 sm:bottom-20 left-1/2 transform -translate-x-1/2">
       <!-- <img v-scroll-to="'#quote'" class="cursor-pointer" src="../assets/img/arrow.svg"> -->
