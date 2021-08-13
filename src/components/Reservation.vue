@@ -206,6 +206,13 @@
         </button>
       </div>
     </div>
+    <div v-if="successReservation == true" class="container mx-auto grid grid-cols-1 gap-0">
+      <p class="text-center text-white xl:text-4xl sm:text-lg mt-32">
+        Réservation envoyée avec succès ! 🎉
+        <br><br><br>
+        À très vite ! 👋
+      </p>
+    </div>
   </v-app>
 </template>
 
@@ -217,6 +224,7 @@ export default {
     templateParams: null,
     editReservation: true,
     resultReservation: false,
+    successReservation: false,
     name: "",
     tel: "",
     email: null,
@@ -261,9 +269,12 @@ export default {
         end: this.end
       }
       emailjs.send('service_95xprd8', 'template_fin6nem', this.templateParams)
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-      }, function(error) {
+      .then((result) => {
+        console.log('SUCCESS!', result.status, result.text);
+        this.editReservation = false
+        this.resultReservation = false
+        this.successReservation = true
+      }, (error) => {
         console.log('FAILED...', error);
       });
     },
