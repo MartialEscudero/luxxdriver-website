@@ -1,5 +1,5 @@
 <template>
-<v-main id="home">
+<v-main id="home" data-aos="fade">
   <nav role="navigation" class="mb-32 absolute">
     <div id="bg" class="bgNoScroll"></div>
     <div id="menuToggle">
@@ -30,7 +30,7 @@
         </v-btn> 
       </div> -->
       <div class="md:mt-2 md:text-right sm:text-center">
-        <p class="text-xs">Rejoins moi sur <a class="font-bold" target="_blank" href="https://www.instagram.com/luxx_driver/">Instagram </a>.</p>
+        <p class="text-xs" >Rejoins moi sur <a class="font-bold" target="_blank" href="https://www.instagram.com/luxx_driver/">Instagram </a>.</p>
         <p class="text-xs">Réserve ton prochain trajet rapidement en <a class="font-bold cursor-pointer" target="_blank" v-scroll-to="'#reservation'">cliquant ici</a>.</p>
       </div>
       <div></div>

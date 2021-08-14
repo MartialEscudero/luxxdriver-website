@@ -1,9 +1,9 @@
 <template>
   <v-app style="background-color: #202020; color: #D7AC22" id="reservation">
-    <h1 class="container mx-auto text-4xl font-bold md:mt-20 sm:mt-10 text-left md:mb-10">
+    <h1 class="container mx-auto text-4xl font-bold md:mt-20 sm:mt-10 text-left md:mb-10" data-aos="fade-right">
       Réservation
     </h1>
-    <div v-if="editReservation == true" class="mx-auto container grid md:grid-cols-3 sm:grid-cols-1 gap-10 md:mt-20">
+    <div v-if="editReservation == true" class="mx-auto container grid md:grid-cols-3 sm:grid-cols-1 gap-10 md:mt-20" data-aos="fade-up">
       <div class="md:-mt-14">
         <v-text-field
             v-model="name"
