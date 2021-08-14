@@ -32,7 +32,7 @@
             src: 'https://www.luxxdriver.com/assets/img/out.jpg',
           },
           {
-            src: '',
+            src: 'https://www.luxxdriver.com/assets/img/in.jpg',
           },
         ],
       }

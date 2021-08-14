@@ -207,7 +207,7 @@
       </div>
     </div>
     <div v-if="successReservation == true" class="container mx-auto grid grid-cols-1 gap-0">
-      <p class="text-center text-white xl:text-4xl sm:text-lg mt-32">
+      <p class="text-center text-white xl:text-4xl sm:text-lg mt-48">
         Réservation envoyée avec succès ! 🎉
         <br><br><br>
         À très vite ! 👋
