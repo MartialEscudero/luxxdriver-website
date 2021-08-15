@@ -1,6 +1,6 @@
 <template>
   <v-app style="background-color: #383838; color: #D7AC22" id="price">
-    <h1 class="container mx-auto text-4xl font-bold xl:pt-20 sm:pt-10 mb-10 text-left" data-aos="fade-right">
+    <h1 class="container mx-auto text-4xl font-bold pt-20 mb-10 text-left" data-aos="fade-right">
       Tarifs
     </h1>
     <div class="container grid xl:grid-cols-2 sm:grid-cols-1 mb-16">

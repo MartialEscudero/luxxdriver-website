@@ -3,6 +3,9 @@
     class="relative flex h-screen w-full h-full bg-no-repeat bg-cover xl:bg-right sm:bg-center"
     style="background-image: url('https://www.luxxdriver.com/assets/img/bg.jpg')"
   >
+    <div class="m-auto">
+      <h1 class="text-center xl:text-4xl sm:text-xl italic xl:-mt-80 sm:-mt-72 xl:opacity-60 sm:opacity-50 xl:p-3 sm:p-1"><span class="font-bold xl:text-7xl sm:text-3xl">Luxx Driver</span><br>Chauffeur Privé</h1>
+    </div>
     <div class="absolute xl:bottom-24 sm:bottom-20 left-1/2 transform -translate-x-1/2">
       <!-- <img v-scroll-to="'#quote'" class="cursor-pointer" src="../assets/img/arrow.svg"> -->
       <div class="arrow cursor-pointer" v-scroll-to="'#quote'">
@@ -15,6 +18,15 @@
 </template>
 
 <style scoped>
+h1 {
+  color: #D7AC22;
+  font-family: 'Spectral', serif;
+}
+
+span {
+  font-family: 'Spectral', serif;
+}
+
 body {
   margin: 0;
   padding: 0;
