@@ -56,7 +56,9 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200;1,400;1,700&display=swap');
+
 * {
   font-family: 'Poppins', sans-serif;
 }
@@ -96,7 +98,7 @@ a:hover {
 .bgNoScroll {
   background: black;
   transition: 0.2s;
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .bgScroll {
