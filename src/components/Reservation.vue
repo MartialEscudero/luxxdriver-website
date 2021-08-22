@@ -156,7 +156,7 @@
           ></v-text-field>
           <p v-if="showStart == true" class="absolute text-red-500 text-xs -mt-5">Lieu de départ invalide</p>
       </div>
-      <div class="md:mt-28 sm:-mt-10">
+      <div class="md:mt-28 sm:-mt-10" v-if="end != 'Autre, je choisis mon adresse'">
         <v-select
           dark
           style="font-size: 1.2rem"
@@ -164,6 +164,17 @@
           :items="endItems"
           label="Lieu d’arrivé"
         ></v-select>
+        <p v-if="showEnd == true" class="absolute text-red-500 text-xs -mt-5">Lieu d'arrivé invalide</p>
+      </div>
+      <div class="md:mt-28 sm:-mt-10" v-else>
+        <v-text-field
+            v-model="endOther"
+            label="Je renseigne mon lieu d'arrivé"
+            clearable
+            dark
+            style="font-size: 1rem"
+            name="user_start"
+          ></v-text-field>
         <p v-if="showEnd == true" class="absolute text-red-500 text-xs -mt-5">Lieu d'arrivé invalide</p>
       </div>
       <div class="mx-auto md:mt-28 sm:-mt-5 sm:mb-10">
@@ -194,7 +205,10 @@
       <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
         de : {{start}}
       </div>
-      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32">
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32" v-if="end == 'Autre, je choisis mon adresse'">
+        vers : {{endOther}}
+      </div>
+      <div class="text-white bg-black pt-2 pb-2 pl-4 pr-4 md:mt-32" v-else>
         vers : {{end}}
       </div>
       <div class="mx-auto md:mt-32">
@@ -236,7 +250,9 @@ export default {
     time: new Date().getHours() + ":" + new Date().getMinutes(),
     menuTwo: false,
     start: null,
+    other:  false,
     end: null,
+    endOther: null,
     endItems: [
       'Carnon-Plage / Palavas',
       'Aéroport',
@@ -246,7 +262,7 @@ export default {
       'La Grande-Motte',
       'Le Grau-du-Roi',
       'Vias',
-      'AUTRE'
+      'Autre, je choisis mon adresse'
     ],
     selected: null,
     showName: false,
@@ -258,15 +274,28 @@ export default {
   }),
   methods: {
     sendReservation() {
-      this.templateParams = {
-        name: this.name,
-        tel: this.tel,
-        email: this.email,
-        passager: this.passager,
-        date: this.date,
-        time: this.time,
-        start: this.start,
-        end: this.end
+      if (this.end == 'Autre, je choisis mon adresse') {
+        this.templateParams = {
+          name: this.name,
+          tel: this.tel,
+          email: this.email,
+          passager: this.passager,
+          date: this.date,
+          time: this.time,
+          start: this.start,
+          end: this.endOther
+        }
+      } else {
+        this.templateParams = {
+          name: this.name,
+          tel: this.tel,
+          email: this.email,
+          passager: this.passager,
+          date: this.date,
+          time: this.time,
+          start: this.start,
+          end: this.end
+        }
       }
       emailjs.send('service_95xprd8', 'template_fin6nem', this.templateParams)
       .then((result) => {
