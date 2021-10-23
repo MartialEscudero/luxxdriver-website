@@ -16,6 +16,11 @@ const routes = [
     component: () => import('../views/404.vue')
   },
   { 
+    path: '/mentions-legales', 
+    name: 'Mentions légales',
+    component: () => import('../views/mentions-legales.vue')
+  },
+  { 
     path: '*', 
     component: () => import('../views/404.vue')
   }
