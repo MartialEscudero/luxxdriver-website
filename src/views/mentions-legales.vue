@@ -8,7 +8,7 @@
     <div class="m-auto container mt-10 mb-10">
       <h1 class="text-white font-bold md:text-left sm:text-center text-6xl mb-16">Mentions légales</h1>
         <section class="md:text-base sm:text-sm">
-          <h2 class="font-bold text-2xl md:ml-10 mb-5">Éditeur du Site</h2>
+          <h2 class="font-bold text-2xl md:ml-10 mb-5">Éditeur du site</h2>
           <p><span>Forme juridique : </span>SASU - LUXX DRIVER</p>
           <p><span>Numéro de SIRET : </span>89790852100015</p>
           <p><span>Responsable : </span>Brian BARRAL</p>
@@ -16,6 +16,7 @@
           <p><span>Téléphone : </span>06 44 24 90 76</p>
           <p><span>Email : </span>luxxdriver.contact@gmail.com</p>
           <p><span>Site Web : </span>www.luxxdriver.com</p>
+          <p><span>Gouv.fr : </span><a href="https://annuaire-entreprises.data.gouv.fr/etablissement/89790852100015" target="_blank">annuaire-entreprises.data.gouv.fr</a></p>
         </section >
         <section class="md:text-base sm:text-sm">
           <h2 class="font-bold text-2xl md:ml-10 mb-5">Hébergement</h2>
