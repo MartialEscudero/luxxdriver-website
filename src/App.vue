@@ -1,6 +1,6 @@
 <template>
 <v-main id="home" data-aos="fade">
-  <nav role="navigation" class="mb-32 absolute" v-if="getUrl() == '/#/'">
+  <nav role="navigation" class="mb-32 absolute" v-if="getUrl()">
     <div id="bg" class="bgNoScroll"></div>
     <div id="menuToggle">
       <input type="checkbox" />
@@ -16,12 +16,12 @@
     </div>
     <a class="number select-none text-white xl:text-4xl sm:text-2xl" href="tel:0644249076">06 44 24 90 76</a>
   </nav>
-  <button v-if="getUrl() == '/#/'" v-scroll-to="'#reservation'" class="btnReserv bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded inline-flex items-center xl:text-base sm:text-xs">
+  <button v-if="getUrl()" v-scroll-to="'#reservation'" class="btnReserv bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded inline-flex items-center xl:text-base sm:text-xs">
     <svg class="float-right fill-current xl:mt-1 sm:mt-0.5  xl:h-5 sm:h-4 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/></svg>
     <span>Réserver</span>
   </button>
   <router-view/>
-  <footer style="background-color: #383838; color: white" class="flex" v-if="getUrl() == '/#/'">
+  <footer style="background-color: #383838; color: white" class="flex" v-if="getUrl()">
     <div class="container grid md:grid-cols-3 sm:grid-cols-1">
       <!-- <div class="mt-3">
         <a href="#reservation" class="float-right reserve pl-1 pr-1 ">Réserver</a><span class="ml-4 mr-4 select-none float-right">|</span>
@@ -47,13 +47,9 @@ require("./assets/js/app.js")
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
   methods: {
     getUrl(){
-      return window.location.href.substring(window.location.href.length-3)
+      return "Home" == this.$route.name
     },
   },
 };
