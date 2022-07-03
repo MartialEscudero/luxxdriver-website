@@ -7,7 +7,7 @@
       <div>
         <img class="shadow-2xl xl:w-100 md:w-96 sm:w-80 mx-auto" src="../assets/img/price.png" data-aos="fade-up">
       </div>
-      <div class="hidden xl:block mt-40 w-5/6" data-aos="fade-up">
+      <div class="hidden xl:block mt-24 w-5/6" data-aos="fade-up">
         <v-carousel hide-delimiters>
           <v-carousel-item
             v-for="(item,i) in items"
